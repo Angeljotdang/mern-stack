@@ -1,0 +1,68 @@
+.div-login {
+  width: 300px;
+  border: 1px solid #7b747485;
+  padding: 25px;
+  margin: 0 auto;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.login-title {
+  display: block;
+  font-size: 30px;
+  margin-bottom: 10px;
+}
+.email-phone {
+  display: block;
+  margin-bottom: 10px;
+}
+.forgot-password {
+  display: inline-block;
+  margin-left: 100px;
+  margin-bottom: 03px;
+}
+.button {
+  display: block;
+  margin-bottom: 30px;
+  border: 0;
+  border-radius: 15px;
+  width: 93%;
+  font-size: 15px;
+  padding: 07px;
+  background-color: #ffce12;
+}
+.divider {
+  display: flex;
+  align-content: center;
+  width: 100%;
+  gap: 5px;
+  line-height: 0;
+}
+
+.divider div {
+  flex: 1;
+  background-color: #c9c6c6;
+  height: 1px;
+}
+.divider h5 {
+  margin: 0;
+  line-height: 1px;
+  white-space: nowrap;
+  color: #adabab;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.passkey-button {
+  display: block;
+  margin-bottom: 30px;
+  border: 0;
+  border-radius: 15px;
+  width: 100%;
+  font-size: 14px;
+  padding: 05px;
+  padding-left: 15px;
+  margin-top: 30px;
+  background-color: transparent;
+  border: 1px solid #7b747485;
+  border-radius: 30px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
