@@ -13,6 +13,17 @@ module.exports.login = async (req, res, next) => {
 
     }
 }
+module.exports.password = async(req,res,next)=>{
+    try{
+        console.log("Passsword controller")
+        await loginService.password(req)
+        next()
+
+    }catch(err){
+        
+        next(err)
+    }
+}
 
 // module.exports.fetch = async (req, res, next) => {
 //     try {

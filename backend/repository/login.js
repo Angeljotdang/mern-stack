@@ -7,6 +7,13 @@ module.exports.create = async (data) => {
         throw error
     }
 }
+module.exports.create = async (data) => {
+    try {
+        return await login.create(data)
+    } catch (err) {
+        throw err
+    }
+}
 
 module.exports.findById = async (_id, filter) => {
     try {
@@ -33,10 +40,10 @@ module.exports.findByIdAndDelete = async (_id) => {
     }
 }
 
-module.exports.findByIdAndUpdate = async (_id) => {
+module.exports.findByIdAndUpdate = async (_id, data) => {
     try {
         console.log("id", _id)
-        const updated = await login.findByIdAndUpdate(_id, { $set: { completed: true } }, { new: true, upsert: true, runValidators: true, select: 'description completed' })
+        const updated = await login.findByIdAndUpdate(_id, { $set: { data } }, { new: true, upsert: true, runValidators: true, select: 'description completed' })
         console.log("updated", updated)
         return updated
     }

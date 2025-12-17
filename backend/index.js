@@ -2,6 +2,7 @@ const express = require('express')
 const app = express()
 const routers = require('./router')
 const responseHandler = require('./m_modules/responseHandler')
+const errorHandler = require('./m_modules/errorHandler')
 require('./database/mongo')
 const cors = require('cors')
 
@@ -24,11 +25,12 @@ routers.forEach(route => {
 });
 app.use(responseHandler)
 
-app.use((err, req, res, next) => {
-    console.log(err)
-    res.status(500).send('Something went wrong')
+// app.use((err, req, res, next) => {
+//     console.log(err)
+//     res.status(500).send('Something went wrong')
 
-})
+// })
+app.use(errorHandler)
 
 app.listen(8000, () => console.log("Server is up"))
 module.exports = app

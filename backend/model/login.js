@@ -6,7 +6,6 @@ const UserSchema = new mongoose.Schema({
     },
     email: {
         type: String,
-        unique: true,
         sparse: true,
         trim: true,
         lowercase: true
@@ -14,9 +13,8 @@ const UserSchema = new mongoose.Schema({
     },
     phoneNumber: {
         type: String,
-        unique: true,
         trim: true,
-        sparse: true
+        sparse: true //allowed nulls
         //can allow sparse values if entered email id
     },
     password: {
@@ -25,6 +23,9 @@ const UserSchema = new mongoose.Schema({
     }
 
 },
-    {timestamps: true})
+    { timestamps: true })
+
+UserSchema.index({ email: 1, phoneNumber: 1 }, { unique: true, sparse: true })
 const User = mongoose.model('User', UserSchema)
+
 module.exports = User

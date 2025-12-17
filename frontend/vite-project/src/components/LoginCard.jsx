@@ -10,18 +10,18 @@ const isEmail = (value) =>
 const handleContinue =async ()=>{
     
     let email=''
-    let phone=''
+    let phoneNumber=''
     if(isPhone(updatedValue)){
-        phone=updatedValue
+        phoneNumber=updatedValue
     }
     else if(isEmail(updatedValue)){
-        email=updatedValue
+         email=updatedValue
     }
     else {
         alert('Enter a correct phone number or email id')
         return
     }
-    const payload={email,phone}
+    const payload={email,phoneNumber}
     console.log("payload",payload)
     const res=await fetch('http://localhost:8000/amazonClone/login/mobileEmail',{
         headers:{'Content-Type':'application/json'},
@@ -30,11 +30,13 @@ const handleContinue =async ()=>{
     })
     const data=await res.json()
     console.log("data",data)
-    if(data.data){
+    console.log("data.data && data.data.length>0",data.data )
+    console.log("data length",Object.keys(data.data).length)
+    if(data.data && Object.keys(data.data).length>0){
         navigate('/login',{state:{data}})
     }
     else{
-        navigate('signup')
+        navigate('signup',{state:{data}})
     }
     
     // if(data){
