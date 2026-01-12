@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import './Login.css'
 export default function LoginCard(){
 const navigate=useNavigate()
-    
+
 const [updatedValue,setUpdatedValue] = useState('')
 const isPhone=(value)=>/^[0-9]{10}$/.test(value)
 const isEmail = (value) =>
@@ -29,14 +30,16 @@ const handleContinue =async ()=>{
         body:JSON.stringify(payload)
     })
     const data=await res.json()
-    console.log("data",data)
-    console.log("data.data && data.data.length>0",data.data )
-    console.log("data length",Object.keys(data.data).length)
+    // console.log("data",data)
+    // console.log("data.data && data.data.length>0",data.data )
+   // console.log("data length",Object.keys(data.data).length)
+   console.log("dataaaaaaaa=>logincard",data)
     if(data.data && Object.keys(data.data).length>0){
         navigate('/login',{state:{data}})
     }
     else{
-        navigate('signup',{state:{data}})
+       // console.log("signuppppp")
+        navigate('/signup',{state:{updatedValue}})
     }
     
     // if(data){
@@ -48,11 +51,11 @@ const handleContinue =async ()=>{
     console.log("heyyy its me!! a continue button")
 }
     return (
-    <div style={{width:'300px',border:'1px solid #7b747485',padding:'25px',margin:'0 auto',borderRadius:'10px',boxShadow:' 0 2px 8px rgba(0, 0, 0, 0.04)'}}>
+    <div className="div-login">
         <label style={{fontSize:'22px',display:'block',marginBottom:'15px'}}>Sign in or create account</label>
         <label style={{display:'block',fontWeight:'bold',fontSize:'15px',marginBottom:'5px'}}> Enter mobile number or email</label>
         <input type="text" value={updatedValue} onChange={(e)=>{
-            console.log("eeeeeeeeeeeeeeeeee",e.target)
+           // console.log("eeeeeeeeeeeeeeeeee",e.target)
             setUpdatedValue(e.target.value)}} style={{display:'block',width:'90%',height:'30px',marginBottom:'10px'}}></input>
         <button onClick={handleContinue} style={{width:'93%',fontSize:'15px',padding:'10px',marginBottom:'10px',borderRadius:'10px',border:'0',background:'#ffce12'}}> Continue</button>
         <label style={{display:'block',fontSize:'13px', fontFamily:'arial, sans-serif'}}>By continuing, you agree to Amazon's Conditions of Use and Privacy Notice.</label>

@@ -70,6 +70,6 @@ module.exports.findOneAndDelete = async (filter) => {
 }
 
 module.exports.findOne = async (filter) => {
-    const record = await login.findOne(filter)
+    const record = await login.findOne(filter).lean()
     return record
 }

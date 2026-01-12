@@ -5,6 +5,7 @@ import Logo from "./components/Logo";
 import LoginCard from "./components/LoginCard";
 import Login from "./components/Login";
 import Signup from "./components/SignUp";
+import Register from "./components/RegisterPage"
 function App() {
   return (
     <BrowserRouter>
@@ -15,6 +16,8 @@ function App() {
         <Route path="/" element={<LoginCard/>}/>
         <Route path="/login" element={<Login/>}/>
         <Route path="/signup" element={<Signup/>}/>
+        <Route path="/register" element={<Register/>}/>
+        {/* <Route path="/register" element={<Register/>}/> */}
       </Routes>
     
     </div>

@@ -3,17 +3,21 @@ import {  useState } from 'react'
 import './Login.css'
 export default  function Login(){
     const location=useLocation()
+    console.log("location",location)
     const data = location?.state?.data?.data
-    const emailPhone  = data.email || data.phoneNumber
+    //console.log(data)
+    console.log("login data",data)
+   
+    const emailPhone  = data.email || data.records.phoneNumber
     const _id=data._id
-    console.log("dataaaaa",data)
+   // console.log("dataaaaa",data.records)
     const [password,setUpdatedPassword]=useState('')
     // useEffect(()=>{
     //     console.log("Location",emailPhone)
     // },[emailPhone])
     
     const handleSigin=async()=>{
-        const payload={_id,email:data.email,phoneNumber:data.phoneNumber,password,login:true}
+        const payload={_id,email:data.email,phoneNumber:data.phoneNumber,password,action:"LOGIN"}
         const res=await fetch('http://localhost:8000/amazonClone/login/mobileEmail',{
             headers:{'Content-Type':'application/json'},
             method:'POST',
