@@ -2,11 +2,32 @@ import { useState } from "react";
 import "./Login.css";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 // import PuzzleCaptcha from "./PuzzleCaptcha";
 
 export default function RegisterPage() {
-  const [phone, setPhone] = useState("");
+  const [phoneNumber, setPhone] = useState("");
+  const [name,setName]=useState("")
+  const [password,setPassword]=useState("")
+  const location=useLocation()
+  const handleRegister=async()=>{
+    console.log("locationnnn regsiter",location)
+    const payload={action:"REGISTER",name,phoneNumber,password,email:location?.state?.email}
+    const res=await fetch("http://localhost:8000/amazonClone/login/mobileEmail",{
+      "headers":{'Content-Type':'application/json'},
+      body:JSON.stringify(payload),
+      method:"POST"
+    })
+    const data=await res.json()
+        //console.log("locationnnn",location)
+
+    console.log("resss data",data)
+    if(data.error) alert(data.message)
+    else console.log("regsiter data",data)
+
+
+
+  }
 //   const [captchaSolved, setCaptchaSolved] = useState(false);
 
   return (
@@ -20,20 +41,15 @@ export default function RegisterPage() {
       <div style={{ display: "flex", alignItems: "center" }}>
         <PhoneInput
           country="in"
-          value={phone}
-          onChange={setPhone}
+          value={phoneNumber}
+         onChange={(value)=> {
+          console.log("phoneNumber",value)
+          setPhone(value)}}
           containerStyle={{ display: "inline-flex", width: "auto" }}
-          inputStyle={{ width: "80px" }}
+          inputStyle={{ width: "200px" }}
         />
 
-        <input
-          style={{
-            width: "100%",
-            height: "25px",
-            marginLeft: "10px"
-          }}
-          placeholder="Mobile Number"
-        />
+       
       </div>
 
       <span className="email-phone" style={{ fontWeight: "bold" }}>
@@ -42,12 +58,14 @@ export default function RegisterPage() {
       <input
         placeholder="First and last name"
         className="full-input"
+        value={name}
+        onChange={(e)=>setName(e.target.value)}
       />
 
       <span className="bold-font">
         Password (at least 6 characters)
       </span>
-      <input className="full-input" />
+      <input className="full-input" value={password} onChange={(e)=>setPassword(e.target.value)}/>
 
       <div className="parent">
         <span className="icon">i</span>
@@ -81,9 +99,10 @@ export default function RegisterPage() {
       <button
         className="button"
         style={{ marginTop: "20px", width: "100%" }}
+        onClick={handleRegister}
         // disabled={!captchaSolved}
       >
-        Verify mobile number
+        Register
       </button>
 
       <hr />
